@@ -1,0 +1,15 @@
+{
+  "extends": ["react-app", "eslint-config-next", "next/core-web-vitals"],
+  "rules": {
+    "no-redeclare": 0,
+    "@typescript-eslint/no-redeclare": 0,
+    "react/button-has-type": 1,
+    "react/display-name": 0,
+    "react/function-component-definition": [
+      1,
+      {
+        "namedComponents": "arrow-function"
+      }
+    ]
+  }
+}
