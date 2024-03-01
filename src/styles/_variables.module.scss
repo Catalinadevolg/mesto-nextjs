@@ -1,18 +1,26 @@
 :root {
   // Colors
-  --black: background: rgba(20, 22, 31, 1);
-  --yellow: background: rgba(206, 171, 66, 1);
-  --yellow-2: background: rgba(254, 241, 89, 1);
-  --yellow-3: background: rgba(251, 232, 193, 1);
-  --yellow-4: background: rgba(242, 188, 28, 1);
-  --yellow-5: background: rgba(254, 237, 37, 1);
-  --yellow-6: background: rgba(245, 196, 97, 1);
-  --purple: background: rgba(247, 217, 253, 1);
-  --purple-2: background: rgba(247, 193, 254, 1);
-  --purple-3: background: rgba(189, 152, 253, 1);
-  --purple-4: background: rgba(237, 168, 250, 1);
-  --purple-5: background: rgba(234, 94, 252, 1);
-  --purple-6: background: rgba(234, 94, 252, 1);
+  --black: rgba(20, 22, 31, 1);
+  --yellow: rgba(206, 171, 66, 1);
+  --yellow-2: rgba(254, 241, 89, 1);
+  --yellow-3: rgba(251, 232, 193, 1);
+  --yellow-4: rgba(242, 188, 28, 1);
+  --yellow-5: rgba(254, 237, 37, 1);
+  --yellow-6: rgba(245, 196, 97, 1);
+  --purple: rgba(247, 217, 253, 1);
+  --purple-2: rgba(247, 193, 254, 1);
+  --purple-3: rgba(189, 152, 253, 1);
+  --purple-4: rgba(237, 168, 250, 1);
+  --purple-5: rgba(234, 94, 252, 1);
+  --purple-6: rgba(234, 94, 252, 1);
+
+  // Text colors
+  --text-primary: rgb(216, 230, 241);
 
   --header-height: 114px;
+
+  --header-z-index: 100;
+
+  --transition-200: 200ms;
+  --transition-600: 600ms;
 }
