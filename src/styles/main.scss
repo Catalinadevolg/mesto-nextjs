@@ -1,0 +1,22 @@
+@import './reset.module';
+@import './variables.module';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-feature-settings: normal;
+
+  /* font display strategy */
+  font-variant: normal;
+  text-size-adjust: 100%;
+
+  /* global background */
+  background-color: var(--black);
+}
+
+body {
+  min-height: 100dvh;
+}
