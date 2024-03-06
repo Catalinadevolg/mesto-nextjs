@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import cn from 'classnames';
-import { Button, LogoIcon } from '@/shared';
-import Link from 'next/link';
+import { Button, Logo } from '@/shared';
 
 const Header = () => {
   const [y, setY] = useState(0);
@@ -30,9 +29,7 @@ const Header = () => {
 
   return (
     <header className={cn(styles.root, { [styles['visible-header']]: scrollingUp === true })}>
-      <Link href="/" className={styles['icon-wrapper']}>
-        <LogoIcon />
-      </Link>
+      <Logo clickable />
 
       <nav className={styles.navigation}>
         <ul className={styles['nav-list']}>

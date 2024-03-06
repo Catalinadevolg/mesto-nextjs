@@ -1,0 +1,62 @@
+.root {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  background-color: white;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+
+.title {
+  max-width: 740px;
+
+  font-size: 47px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.logo {
+  width: 100%;
+
+  svg {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.gradient {
+  width: 5425px;
+  height: 908px;
+
+  transform: rotate(15deg);
+}
+
+.polygon-wrapper {
+  position: absolute;
+}
