@@ -1,0 +1,48 @@
+.title {
+  font-size: 29px;
+  font-weight: 500;
+  line-height: 29px;
+}
+
+.description {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+}
+
+.icon-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  svg path {
+    transition: var(--transition-600) var(--cubic-bezier);
+  }
+}
+
+.root {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  color: var(--text-primary);
+
+  padding-bottom: 40px;
+  border-bottom: 2px solid var(--text-primary);
+
+  transition: var(--transition-600) var(--cubic-bezier);
+
+  &:hover {
+    color: var(--text-secondary);
+
+    border-color: var(--text-secondary);
+
+    .icon-wrapper {
+      svg path {
+        fill: var(--text-secondary);
+      }
+    }
+  }
+}
