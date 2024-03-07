@@ -1,8 +1,8 @@
 'use client';
 
-import { ArrowIcon, Container, FireworkIcon, GlobeIcon } from '@/shared';
+import { ArrowIcon, Container, FireworkIcon, GlobeIcon, useAnimation } from '@/shared';
 import styles from './Services.module.scss';
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import cn from 'classnames';
 import {
   ServicesItem,
@@ -87,50 +87,9 @@ const PADDING_TOP_MIN = 190;
 const Services = () => {
   const [selected, setSelected] = useState<ServiceType>('business');
 
-  const [isVisible, setIsVisible] = useState(false);
-  const [paddingTop, setPaddingTop] = useState(PADDING_TOP_MAX);
+  const ref = useRef<HTMLUListElement>(null);
 
-  const observerRef = useRef<HTMLUListElement>(null);
-
-  const handleScroll = useCallback(() => {
-    if (!observerRef.current) return;
-
-    const elCoords = observerRef.current.getBoundingClientRect();
-    const viewportHeight = document.documentElement.clientHeight;
-
-    const scrolled = viewportHeight - elCoords.top;
-
-    setPaddingTop(
-      PADDING_TOP_MAX -
-        (scrolled / (viewportHeight + elCoords.height)) * (PADDING_TOP_MAX - PADDING_TOP_MIN)
-    );
-  }, [observerRef]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { rootMargin: '50px 0px 0px' }
-    );
-
-    if (observerRef.current) observer.observe(observerRef.current);
-
-    return () => observer.disconnect();
-  }, [isVisible, observerRef]);
-
-  useLayoutEffect(() => {
-    if (!isVisible) return;
-
-    handleScroll();
-  }, [isVisible, handleScroll]);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isVisible, handleScroll]);
+  const { scrolledPart } = useAnimation(ref);
 
   return (
     <section className={styles.root}>
@@ -188,9 +147,11 @@ const Services = () => {
           </ul>
 
           <ul
-            ref={observerRef}
+            ref={ref}
             className={cn(styles['services-list__list'], styles['margin-top-120'])}
-            style={{ paddingTop: `${paddingTop}px` }}
+            style={{
+              paddingTop: `${PADDING_TOP_MAX - scrolledPart * (PADDING_TOP_MAX - PADDING_TOP_MIN)}px`,
+            }}
           >
             {servicesShortInfo.map((i, idx) => (
               <SmallServiceItem key={idx} title={i.title} description={i.description} />

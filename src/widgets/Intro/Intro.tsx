@@ -1,8 +1,8 @@
 'use client';
 
-import { ArrowToRightIcon, Container, Logo, Marquee, Polygon } from '@/shared';
+import { ArrowToRightIcon, Container, Logo, Marquee, Polygon, useAnimation } from '@/shared';
 import styles from './Intro.module.scss';
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 
 const MARQUEE_CONTENT = [
   'бизнеса',
@@ -19,53 +19,16 @@ const MARQUEE_CONTENT = [
 const OFFSET = 400;
 
 const Intro = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [translateY, setTranslateY] = useState(OFFSET);
-
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleScroll = useCallback(() => {
-    if (!ref.current) return;
-
-    const elCoords = ref.current.getBoundingClientRect();
-    const viewportHeight = document.documentElement.clientHeight;
-
-    const scrolled = viewportHeight - elCoords.top;
-    setTranslateY(OFFSET - (scrolled / (viewportHeight + elCoords.height)) * OFFSET);
-  }, [ref]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { rootMargin: '20px' }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-
-    return () => observer.disconnect();
-  }, [isVisible, ref]);
-
-  useLayoutEffect(() => {
-    if (!isVisible) return;
-
-    handleScroll();
-  }, [isVisible, handleScroll]);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isVisible, handleScroll]);
+  const { scrolledPart } = useAnimation(ref);
 
   return (
     <section className={styles.root}>
       <div
         ref={ref}
         className={styles['content-wrapper']}
-        style={{ transform: `translateY(${translateY}px)` }}
+        style={{ transform: `translateY(${OFFSET - scrolledPart * OFFSET}px)` }}
       >
         <Container>
           <div className={styles.content}>

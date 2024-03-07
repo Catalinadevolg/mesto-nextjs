@@ -1,8 +1,9 @@
 'use client';
 
-import { ReactNode, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { ReactNode, useRef } from 'react';
 import styles from './ServicesItem.module.scss';
 import Link from 'next/link';
+import { useAnimation } from '@/shared';
 
 export interface ServicesItemProps {
   header: string;
@@ -23,51 +24,18 @@ const ServicesItem = ({
   startOffset,
   endOffset,
 }: ServicesItemProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [translateY, setTranslateY] = useState(startOffset);
-
   const ref = useRef<HTMLLIElement>(null);
 
-  const handleScroll = useCallback(() => {
-    if (!ref.current) return;
-
-    const elCoords = ref.current.getBoundingClientRect();
-    const viewportHeight = document.documentElement.clientHeight;
-
-    const scrolled = viewportHeight - elCoords.top;
-    setTranslateY(
-      startOffset - (scrolled / (viewportHeight + elCoords.height)) * (startOffset - endOffset)
-    );
-  }, [ref, startOffset, endOffset]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { rootMargin: '20px' }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-
-    return () => observer.disconnect();
-  }, [isVisible, ref]);
-
-  useLayoutEffect(() => {
-    if (!isVisible) return;
-
-    handleScroll();
-  }, [isVisible, handleScroll]);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isVisible, handleScroll]);
+  const { scrolledPart } = useAnimation(ref);
 
   return (
-    <li ref={ref} className={styles.root} style={{ transform: `translateY(${translateY}px)` }}>
+    <li
+      ref={ref}
+      className={styles.root}
+      style={{
+        transform: `translateY(${startOffset - scrolledPart * (startOffset - endOffset)}px)`,
+      }}
+    >
       <Link href="/" className={styles['item-container']}>
         <div className={styles['top-block']}>
           <h3 className={styles.header}>{header}</h3>

@@ -1,7 +1,8 @@
 'use client';
 
-import { ReactNode, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { ReactNode, useRef } from 'react';
 import styles from './Marquee.module.scss';
+import { useAnimation } from '../../hooks';
 
 interface Props {
   children: ReactNode;
@@ -13,60 +14,18 @@ const ROTATE_DEGREE = 10;
 const MAX_TRANSLATE_X_PERCENT = 17;
 
 const Marquee = ({ children, containerClassName }: Props) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [rotate, setRotate] = useState(MAX_ROTATE_DEGREE);
-  const [translateX, setTranslateX] = useState(-MAX_TRANSLATE_X_PERCENT);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const marqueeRef = useRef<HTMLDivElement>(null);
-  const observerRef = useRef<HTMLDivElement>(null);
-
-  const handleScroll = useCallback(() => {
-    if (!marqueeRef.current) return;
-
-    const elCoords = marqueeRef.current.getBoundingClientRect();
-    const viewportHeight = document.documentElement.clientHeight;
-
-    const scrolled = viewportHeight - elCoords.top;
-
-    setRotate(MAX_ROTATE_DEGREE - (scrolled / (viewportHeight + elCoords.height)) * ROTATE_DEGREE);
-    setTranslateX(
-      (scrolled / (viewportHeight + elCoords.height)) * MAX_TRANSLATE_X_PERCENT -
-        MAX_TRANSLATE_X_PERCENT
-    );
-  }, [marqueeRef]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { rootMargin: '20px' }
-    );
-
-    if (observerRef.current) observer.observe(observerRef.current);
-
-    return () => observer.disconnect();
-  }, [isVisible, observerRef]);
-
-  useLayoutEffect(() => {
-    if (!isVisible) return;
-
-    handleScroll();
-  }, [isVisible, handleScroll]);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isVisible, handleScroll]);
+  const { scrolledPart } = useAnimation(ref);
 
   return (
-    <div ref={observerRef} className={containerClassName}>
+    <div className={containerClassName}>
       <div
-        ref={marqueeRef}
+        ref={ref}
         className={styles.marquee}
-        style={{ transform: `rotate(${rotate}deg) translateX(${translateX}%)` }}
+        style={{
+          transform: `rotate(${MAX_ROTATE_DEGREE - scrolledPart * ROTATE_DEGREE}deg) translateX(${scrolledPart * MAX_TRANSLATE_X_PERCENT - MAX_TRANSLATE_X_PERCENT}%)`,
+        }}
       >
         {children}
       </div>
