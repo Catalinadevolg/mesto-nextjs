@@ -8,6 +8,8 @@
 
 .header {
   display: flex;
+
+  padding: 18px;
 }
 
 .title {
@@ -30,45 +32,6 @@
   margin-top: 13px;
 }
 
-.tab {
-  position: relative;
-
-  display: flex;
-  gap: 8px;
-
-  font-size: 47px;
-  font-weight: 500;
-  line-height: 56px;
-  color: var(--text-primary);
-
-  padding-bottom: 18px;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-
-    width: 100%;
-    max-width: 480px;
-    height: 2px;
-
-    background-color: transparent;
-  }
-}
-
-.tab__active {
-  color: var(--text-secondary);
-
-  &::after {
-    background-color: var(--text-secondary);
-  }
-}
-
 .tab-count {
   width: 24px;
   height: 24px;
@@ -83,6 +46,64 @@
 
   border: 2px solid var(--text-primary);
   border-radius: 50%;
+  transition: var(--transition-600) var(--cubic-bezier);
+}
+
+.tab {
+  position: relative;
+
+  display: flex;
+  gap: 8px;
+
+  font-size: 47px;
+  font-weight: 500;
+  line-height: 56px;
+  color: var(--text-primary);
+
+  padding-bottom: 18px;
+  transition: var(--transition-600) var(--cubic-bezier);
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    max-width: 480px;
+    height: 2px;
+
+    background-color: var(--text-primary);
+    transition: var(--transition-600) var(--cubic-bezier);
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    color: var(--text-secondary);
+
+    &::after {
+      width: 100%;
+
+      background-color: var(--text-secondary);
+    }
+
+    .tab-count {
+      color: var(--text-secondary);
+
+      border-color: var(--text-secondary);
+    }
+  }
+}
+
+.tab__active {
+  color: var(--text-secondary);
+
+  &::after {
+    width: 100%;
+
+    background-color: var(--text-secondary);
+  }
 }
 
 .tab-count__active {
@@ -100,15 +121,19 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
+
+  transition: var(--transition-600) var(--cubic-bezier);
 }
 
 .margin-top-120 {
-  margin: 120px 0 80px;
+  margin-top: 120px;
 }
 
 .button-wrapper {
   display: flex;
   justify-content: center;
+
+  margin-top: 80px;
 }
 
 .all-services-button {
