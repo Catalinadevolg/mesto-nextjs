@@ -1,4 +1,26 @@
 .root {
   mix-blend-mode: lighten;
-  filter: blur(30px);
+  filter: blur(80px);
+  transition: var(--transition-1200) var(--cubic-bezier);
+
+  animation-duration: 3s;
+  animation-name: opacity;
+}
+
+.rotate-clockwise {
+  transform: rotate(15deg);
+}
+
+.rotate-counterclockwise {
+  transform: rotate(-15deg);
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import '@/styles/main.scss';
-import { Header } from '@/widgets';
+import { Footer, Header } from '@/widgets';
+import styles from '@/styles/layout.module.scss';
 import { TT_Norms } from './fonts';
 
 export const metadata: Metadata = {
@@ -16,9 +17,13 @@ export default function RootLayout({
   return (
     <html lang="ru" className={TT_Norms.className}>
       <body>
-        <Header />
+        <div className={styles.root}>
+          <Header />
 
-        {children}
+          {children}
+
+          <Footer />
+        </div>
       </body>
     </html>
   );

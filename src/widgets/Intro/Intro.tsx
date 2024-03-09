@@ -1,8 +1,9 @@
 'use client';
 
-import { ArrowToRightIcon, Container, Logo, Marquee, Polygon, useAnimation } from '@/shared';
+import { ArrowToRightIcon, Container, Logo, Marquee, useAnimation } from '@/shared';
 import styles from './Intro.module.scss';
 import { useRef } from 'react';
+import { Gradient } from './components';
 
 const MARQUEE_CONTENT = [
   'бизнеса',
@@ -16,7 +17,7 @@ const MARQUEE_CONTENT = [
   'шага вперед',
 ];
 
-const OFFSET = 400;
+const CONTENT_OFFSET = 320;
 
 const Intro = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -25,10 +26,14 @@ const Intro = () => {
 
   return (
     <section className={styles.root}>
+      <div className={styles.bg}>
+        <Gradient />
+      </div>
+
       <div
         ref={ref}
         className={styles['content-wrapper']}
-        style={{ transform: `translateY(${OFFSET - scrolledPart * OFFSET}px)` }}
+        style={{ transform: `translateY(${CONTENT_OFFSET - scrolledPart * CONTENT_OFFSET}px)` }}
       >
         <Container>
           <div className={styles.content}>
@@ -55,18 +60,6 @@ const Intro = () => {
             ))}
           </div>
         </Marquee>
-      </div>
-
-      <div className={styles.bg}>
-        <div className={styles.gradient}>
-          <div className={styles['polygon-wrapper']}>
-            <Polygon color="rgba(221, 201, 248, 1)" size="big" />
-          </div>
-
-          <div className={styles['polygon-wrapper']}>
-            <Polygon color="rgba(221, 201, 248, 1)" size="big" />
-          </div>
-        </div>
       </div>
     </section>
   );
