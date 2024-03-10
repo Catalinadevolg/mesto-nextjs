@@ -39,7 +39,7 @@ const Header = () => {
         </ul>
       </nav>
 
-      <Button text="Обсудить задачу" onClick={() => console.log('Handle button click')} />
+      <Button text="Обсудить задачу" isOutlined />
     </header>
   );
 };
