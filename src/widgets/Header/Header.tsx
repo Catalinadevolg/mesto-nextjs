@@ -3,11 +3,12 @@
 import { useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import cn from 'classnames';
-import { Button, Logo } from '@/shared';
+import { BurgerIcon, Button, LinkComponent, Logo } from '@/shared';
 
 const Header = () => {
   const [y, setY] = useState(0);
   const [scrollingUp, setScrollingUp] = useState(true);
+  const [isOpened, setIsOpened] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,19 +28,41 @@ const Header = () => {
     };
   }, [y, scrollingUp]);
 
+  const handleMobileButtonClick = () => {
+    setIsOpened(prev => !prev);
+  };
+
   return (
     <header className={cn(styles.root, { [styles['visible-header']]: scrollingUp === true })}>
-      <Logo clickable />
+      <div className={styles['header__mobile-content']}>
+        <Logo clickable />
 
-      <nav className={styles.navigation}>
+        <button
+          type="button"
+          className={cn(styles['mobile-button'], { [styles['mobile-button__cross']]: isOpened })}
+          onClick={handleMobileButtonClick}
+        >
+          <BurgerIcon />
+        </button>
+      </div>
+
+      <nav className={cn(styles.navigation, { [styles['nav__opened']]: isOpened })}>
         <ul className={styles['nav-list']}>
-          <li className={styles['nav-item']}>Услуги</li>
-          <li className={styles['nav-item']}>Кейс</li>
-          <li className={cn(styles['nav-item'], styles['margin-left'])}>Контакты</li>
-        </ul>
-      </nav>
+          <li className={styles['nav-item']}>
+            <LinkComponent text="Услуги" isLight />
+          </li>
 
-      <Button text="Обсудить задачу" isOutlined />
+          <li className={styles['nav-item']}>
+            <LinkComponent text="Кейс" isLight />
+          </li>
+
+          <li className={cn(styles['nav-item'], styles['margin-left'])}>
+            <LinkComponent text="Контакты" isLight />
+          </li>
+        </ul>
+
+        <Button text="Обсудить задачу" isOutlined />
+      </nav>
     </header>
   );
 };

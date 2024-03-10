@@ -43,6 +43,8 @@
   width: fit-content;
   height: fit-content;
 
+  display: block;
+
   overflow: hidden;
 
   &:hover {
@@ -54,4 +56,18 @@
       transform: rotate(30deg) translateY(-100%);
     }
   }
+
+  &:active {
+    .link__bottom {
+      transform: rotate(0deg) translateY(0%);
+    }
+
+    .link__top {
+      transform: rotate(30deg) translateY(-100%);
+    }
+  }
+}
+
+.light-text {
+  color: var(--text-primary);
 }

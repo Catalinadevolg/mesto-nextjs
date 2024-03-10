@@ -6,6 +6,7 @@ import FireworkIcon from './firework.svg';
 import GlobeIcon from './globe.svg';
 import StarIcon from './star.svg';
 import ArrowToRightIcon from './arrow_to_right.svg';
+import BurgerIcon from './burger.svg';
 
 export {
   LogoIcon,
@@ -16,4 +17,5 @@ export {
   GlobeIcon,
   StarIcon,
   ArrowToRightIcon,
+  BurgerIcon,
 };
