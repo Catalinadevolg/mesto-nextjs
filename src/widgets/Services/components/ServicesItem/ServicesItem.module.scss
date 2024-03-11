@@ -1,5 +1,11 @@
+@import '@/styles/mixins';
+
 .root {
   transition: var(--transition-600) var(--cubic-bezier);
+
+  @media (max-width: $lg) {
+    transform: none !important;
+  }
 }
 
 .top-block {
@@ -15,12 +21,22 @@
   border-bottom: none;
 
   transition: var(--transition-600) var(--cubic-bezier);
+
+  @media (max-width: $lg) {
+    padding: 24px 0 0;
+  }
 }
 
 .header {
   font-size: 47px;
   font-weight: 500;
+  line-height: 47px;
   text-align: center;
+
+  @media (max-width: $lg) {
+    font-size: 32px;
+    line-height: 32px;
+  }
 }
 
 .icon-wrapper {
@@ -40,6 +56,11 @@
 
     transition: var(--transition-600) var(--cubic-bezier);
   }
+
+  @media (max-width: $lg) {
+    width: 70px;
+    height: 70px;
+  }
 }
 
 .bottom-block {
@@ -58,12 +79,22 @@
   font-size: 29px;
   font-weight: 500;
   line-height: 34px;
+
+  @media (max-width: $lg) {
+    font-size: 21px;
+    line-height: 21px;
+  }
 }
 
 .description {
   font-size: 18px;
   font-weight: 400;
   line-height: 25px;
+
+  @media (max-width: $lg) {
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
 
 .tags-wrapper {
@@ -78,6 +109,10 @@
   overflow: hidden;
 
   transition: var(--transition-600) var(--cubic-bezier);
+
+  @media (max-width: $lg) {
+    max-height: none;
+  }
 }
 
 .tag {
@@ -91,6 +126,13 @@
   border: 2px solid var(--text-primary);
 
   transition: var(--transition-600) var(--cubic-bezier);
+
+  @media (max-width: $lg) {
+    font-size: 14px;
+    line-height: 16px;
+
+    padding: 3px 8px;
+  }
 }
 
 .dots-wrapper {
@@ -110,6 +152,10 @@
   border: 2px solid var(--text-primary);
 
   transition: var(--transition-600) var(--cubic-bezier);
+
+  @media (max-width: $lg) {
+    display: none;
+  }
 }
 
 .dot {

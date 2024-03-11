@@ -4,6 +4,8 @@
   border-radius: 48px;
   border: 2px solid rgba(216, 230, 241, 0.4);
 
+  transition: var(--transition-600) var(--cubic-bezier);
+
   &::after {
     content: '';
 
@@ -21,12 +23,16 @@
   }
 
   &:hover {
+    border-color: transparent;
+
     &::after {
       top: 0;
     }
   }
 
   &:active {
+    border-color: transparent;
+
     &::after {
       top: 0;
     }

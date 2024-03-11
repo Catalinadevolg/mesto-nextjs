@@ -1,6 +1,13 @@
 'use client';
 
-import { ArrowIcon, Container, FireworkIcon, GlobeIcon, useAnimation } from '@/shared';
+import {
+  ArrowIcon,
+  Container,
+  FireworkIcon,
+  GlobeIcon,
+  LinkComponent,
+  useAnimation,
+} from '@/shared';
 import styles from './Services.module.scss';
 import { useRef, useState } from 'react';
 import cn from 'classnames';
@@ -131,7 +138,9 @@ const Services = () => {
         </div>
 
         <div className={styles['services-list']}>
-          <ul className={styles['services-list__list']}>
+          <ul
+            className={cn(styles['services-list__list'], styles['services-list__big-items-list'])}
+          >
             {servicesInfo.map((i, idx) => (
               <ServicesItem
                 key={idx}
@@ -148,7 +157,7 @@ const Services = () => {
 
           <ul
             ref={ref}
-            className={cn(styles['services-list__list'], styles['margin-top-120'])}
+            className={cn(styles['services-list__list'], styles['services-list__small-items-list'])}
             style={{
               paddingTop: `${PADDING_TOP_MAX - scrolledPart * (PADDING_TOP_MAX - PADDING_TOP_MIN)}px`,
             }}
@@ -158,15 +167,12 @@ const Services = () => {
             ))}
           </ul>
 
-          <div className={styles['button-wrapper']}>
-            {/* <Button  text='Все услуги' onClick={() => console.log('button click')}/> */}
-            <button type="button" className={styles['all-services-button']}>
-              Все услуги
-            </button>
+          <div className={styles['link-wrapper']}>
+            <LinkComponent text="Все услуги" isOutlined />
           </div>
 
-          <button type="button" className={styles['large-button']}>
-            <span className={styles['large-button__text']}>Обсудить задачу</span>
+          <button type="button" className={styles['custom-button']}>
+            <span className={styles['custom-button__text']}>Обсудить задачу</span>
           </button>
         </div>
       </Container>
