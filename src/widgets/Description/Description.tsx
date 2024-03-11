@@ -5,20 +5,24 @@ const Description = () => {
   return (
     <section className={styles.root}>
       <div className={styles.description}>
-        <p className={styles.content}>
-          <span className={styles.text}>Мы создаем </span>
-          <EyeIcon />
-          <span className={styles.text}>
+        <div className={styles['description__content']}>
+          <span className={styles['description__text']}>Мы создаем </span>
+
+          <div className={styles['description__eye-icon-wrapper']}>
+            <EyeIcon />
+          </div>
+
+          <span className={styles['description__text']}>
             {' '}
             уникальные бренды основываясь глубоком понимании потребителей
           </span>
-        </p>
+        </div>
       </div>
 
       <Marquee containerClassName={styles['marquee-container']}>
-        <div className={styles['marquee-content']}>
+        <ul className={styles['marquee__content-list']}>
           {Array.from({ length: 6 }).map((i, idx) => (
-            <div key={idx} className={styles['marquee-content__wrapper']}>
+            <div key={idx} className={styles['marquee__list-item']}>
               <span>Место для экспертизы и творчества</span>
 
               <div className={styles['arrow-icon-wrapper']}>
@@ -26,7 +30,7 @@ const Description = () => {
               </div>
             </div>
           ))}
-        </div>
+        </ul>
       </Marquee>
     </section>
   );

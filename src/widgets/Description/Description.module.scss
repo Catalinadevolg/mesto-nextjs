@@ -1,3 +1,5 @@
+@import '@/styles/mixins';
+
 .root {
   width: 100%;
 
@@ -7,16 +9,56 @@
 
 .description {
   padding: 154px 170px;
+
+  @media (max-width: $lg) {
+    padding: 60px 16px;
+  }
 }
 
-.content {
+.description__content {
   text-align: center;
 }
 
-.text {
+.description__text {
   font-size: 76px;
   font-weight: 500;
+  line-height: 68px;
   color: var(--text-primary);
+
+  @media (max-width: $lg) {
+    font-size: 36px;
+    line-height: 32px;
+  }
+}
+
+.description__eye-icon-wrapper {
+  position: relative;
+
+  width: 52px;
+  height: 52px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  // to align with text
+  svg {
+    position: absolute;
+    top: 10px;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: $lg) {
+    width: 32px;
+    height: 32px;
+
+    svg {
+      top: 6px;
+    }
+  }
 }
 
 .marquee-container {
@@ -29,9 +71,13 @@
   align-items: center;
 
   overflow: hidden;
+
+  @media (max-width: $lg) {
+    height: 140px;
+  }
 }
 
-.marquee-content {
+.marquee__content-list {
   display: flex;
   align-items: center;
   gap: 40px;
@@ -44,21 +90,36 @@
 
   padding: 14px 24px;
   background-color: var(--text-secondary);
+
+  @media (max-width: $lg) {
+    font-size: 21px;
+    line-height: 21px;
+
+    padding: 6px 24px;
+  }
 }
 
-.marquee-content__wrapper {
+.marquee__list-item {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
 .arrow-icon-wrapper {
+  width: 24px;
+  height: 24px;
+
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
 
   svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: $lg) {
     width: 24px;
     height: 24px;
   }
