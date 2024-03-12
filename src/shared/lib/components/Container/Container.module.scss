@@ -1,0 +1,14 @@
+@import '@/styles/mixins';
+
+.root {
+  position: relative;
+
+  width: 100%;
+  max-width: var(--container-width);
+
+  padding: 0 40px;
+
+  @media (max-width: $md) {
+    padding: 0 16px;
+  }
+}

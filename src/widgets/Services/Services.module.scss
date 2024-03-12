@@ -1,0 +1,242 @@
+@import '@/styles/mixins';
+
+.root {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+
+  @media (max-width: $lg) {
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: $md) {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+  }
+}
+
+.title {
+  font-size: 123px;
+  font-weight: 700;
+  line-height: 123px;
+  color: var(--text-primary);
+  text-transform: uppercase;
+
+  @media (max-width: $lg) {
+    font-size: 48px;
+    line-height: 48px;
+  }
+}
+
+.header-right-block {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  flex: 1;
+
+  // to align with title
+  margin-top: 10px;
+
+  @media (max-width: $lg) {
+    margin-top: 0;
+  }
+}
+
+.tab-count {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+
+  border: 2px solid var(--text-primary);
+  border-radius: 50%;
+
+  transition: var(--transition-600) var(--cubic-bezier);
+}
+
+.tab {
+  position: relative;
+
+  display: flex;
+  gap: 8px;
+
+  font-size: 47px;
+  font-weight: 500;
+  line-height: 56px;
+  color: var(--text-primary);
+
+  padding-bottom: 18px;
+
+  transition: var(--transition-600) var(--cubic-bezier);
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    max-width: 480px;
+    height: 2px;
+
+    background-color: var(--text-primary);
+    transition: var(--transition-600) var(--cubic-bezier);
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    color: var(--text-secondary);
+
+    &::after {
+      width: 100%;
+
+      background-color: var(--text-secondary);
+    }
+
+    .tab-count {
+      color: var(--text-secondary);
+
+      border-color: var(--text-secondary);
+    }
+  }
+
+  @media (max-width: $lg) {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  @media (max-width: $md) {
+    &::after {
+      max-width: 100%;
+    }
+  }
+}
+
+.tab__active {
+  color: var(--text-secondary);
+
+  &::after {
+    width: 100%;
+
+    background-color: var(--text-secondary);
+  }
+}
+
+.tab-count__active {
+  color: var(--text-secondary);
+
+  border-color: var(--text-secondary);
+}
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.services-list__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+
+  transition: var(--transition-600) var(--cubic-bezier);
+}
+
+.services-list__big-items-list {
+  @media (max-width: $lg) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 40px 16px;
+  }
+
+  @media (max-width: $md) {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+.services-list__small-items-list {
+  margin-top: 120px;
+
+  @media (max-width: $lg) {
+    padding-top: 0 !important;
+  }
+
+  @media (max-width: $md) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.link-wrapper {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 80px;
+
+  span {
+    padding: 22px 52px;
+  }
+
+  @media (max-width: $md) {
+    span {
+      font-size: 18px;
+      line-height: 18px;
+    }
+  }
+}
+
+.custom-button {
+  padding: 44px 0;
+  margin-top: 144px;
+  border-radius: 104px;
+  background-image: url('/images/gradient.png');
+  background-size: 150%;
+  background-position: center;
+  mix-blend-mode: difference;
+
+  transition: var(--transition-600) var(--cubic-bezier);
+
+  &:hover {
+    cursor: pointer;
+
+    background-position: 60% 60%;
+  }
+
+  &:active {
+    background-position: 60% 60%;
+  }
+
+  @media (max-width: $lg) {
+    padding: 41px 0;
+  }
+}
+
+.custom-button__text {
+  font-size: 47px;
+  font-weight: 500;
+  line-height: 56px;
+  color: var(--text-primary);
+  mix-blend-mode: difference;
+
+  @media (max-width: $lg) {
+    font-size: 32px;
+    line-height: 38px;
+  }
+}
