@@ -42,8 +42,9 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-
-            <Button text="Обсудить задачу" isLarge isUppercase />
+            <div className={styles['footer__button-wrapper']}>
+              <Button text="Обсудить задачу" isLarge isUppercase />
+            </div>
           </div>
         </Container>
       </div>

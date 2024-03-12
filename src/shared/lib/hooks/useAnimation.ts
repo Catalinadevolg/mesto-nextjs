@@ -12,15 +12,6 @@ export const useAnimation = (ref: RefObject<Element>) => {
     const elCoords = ref.current.getBoundingClientRect();
     const viewportHeight = document.documentElement.clientHeight;
 
-    const elPosition = window.scrollY + elCoords.top - viewportHeight;
-
-    if (elPosition < 0) {
-      const scrolled = viewportHeight - elCoords.top + elPosition;
-      setScrolledPart(scrolled / (viewportHeight + elCoords.height + elPosition));
-
-      return;
-    }
-
     const scrolled = viewportHeight - elCoords.top;
     setScrolledPart(scrolled / (viewportHeight + elCoords.height));
   }, [ref]);

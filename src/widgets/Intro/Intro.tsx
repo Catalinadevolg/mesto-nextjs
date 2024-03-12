@@ -17,7 +17,7 @@ const MARQUEE_CONTENT = [
   'шага вперед',
 ];
 
-const CONTENT_OFFSET = 320;
+const CONTENT_OFFSET = 400;
 
 const Intro = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -31,7 +31,6 @@ const Intro = () => {
       </div>
 
       <div
-        ref={ref}
         className={styles['content-wrapper']}
         style={{ transform: `translateY(${CONTENT_OFFSET - scrolledPart * CONTENT_OFFSET}px)` }}
       >
@@ -43,7 +42,7 @@ const Intro = () => {
           </div>
         </Container>
 
-        <Marquee containerClassName={styles['marquee-container']}>
+        <Marquee ref={ref} containerClassName={styles['marquee-container']}>
           <div className={styles['marquee-content']}>
             {MARQUEE_CONTENT.map((w, idx) => (
               <div key={idx} className={styles['marquee__item']}>

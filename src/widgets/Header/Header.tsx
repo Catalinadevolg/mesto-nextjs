@@ -30,10 +30,14 @@ const Header = () => {
 
   const handleMobileButtonClick = () => {
     setIsOpened(prev => !prev);
+
+    document.body.style.overflow = isOpened ? 'unset' : 'hidden';
   };
 
   return (
-    <header className={cn(styles.root, { [styles['visible-header']]: scrollingUp === true })}>
+    <header
+      className={cn(styles.root, { [styles['visible-header']]: scrollingUp === true || isOpened })}
+    >
       <div className={styles['header__mobile-content']}>
         <Logo clickable />
 

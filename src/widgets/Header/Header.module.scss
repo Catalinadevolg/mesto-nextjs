@@ -13,6 +13,7 @@
   gap: 75px;
 
   padding: 0 40px;
+  background: linear-gradient(180deg, rgb(20, 22, 31), rgba(20, 22, 31, 0) 197.368%);
   z-index: var(--header-z-index);
   transform: translateY(-100%);
 
@@ -28,7 +29,6 @@
 .visible-header {
   transform: translateY(0);
   backdrop-filter: blur(12px);
-  background: linear-gradient(180deg, rgb(20, 22, 31), rgba(20, 22, 31, 0) 197.368%);
 }
 
 .header__mobile-content {
@@ -73,7 +73,7 @@
 
     transition:
       opacity var(--transition-600) ease-in,
-      transform 0s;
+      transform 0s 0.4s;
 
     button {
       width: 100%;
@@ -85,6 +85,10 @@
   @media (max-width: $lg) {
     opacity: 1;
     transform: translateX(0);
+
+    transition:
+      opacity var(--transition-600) ease-in,
+      transform 0s;
   }
 }
 
